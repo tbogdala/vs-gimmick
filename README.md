@@ -9,7 +9,7 @@ including:
 Besides basic syntax highlighting, the key feature is being able to interact
 with a running [Gimmick][gimmick] REPL.
 
-\!\[RuseInteraction\]\(images/vs-gimmick.gif\)
+![RuseInteraction](https://github.com/tbogdala/vs-gimmick/blob/master/images/vs-gimmick.gif)
 
 
 ## Configuration
