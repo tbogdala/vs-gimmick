@@ -2,10 +2,14 @@
     "name": "vs-gimmick",
     "displayName": "vs-gimmick",
     "description": "Gimmick language support for VS Code.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "tbogdala",
     "engines": {
         "vscode": "^1.17.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tbogdala/vs-gimmick.git"
     },
     "categories": [
         "Languages"
