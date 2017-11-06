@@ -16,16 +16,20 @@
     "main": "./out/extension",
     "contributes": {
         "menus": {
-            "editor/context": [{
-                "when": "editorTextFocus && editorHasSelection && resourceLangId == gimmick",
-                "command": "gimmick.evalSelection",
-                "group": "Gimmick"
-            }],
-            "editor/title": [{
-                "when": "editorHasSelection && resourceLangId == gimmick",
-                "command": "gimmick.evalSelection",
-                "group": "Gimmick"
-            }]
+            "editor/context": [
+                {
+                    "when": "editorTextFocus && editorHasSelection && resourceLangId == gimmick",
+                    "command": "gimmick.evalSelection",
+                    "group": "Gimmick"
+                }
+            ],
+            "editor/title": [
+                {
+                    "when": "editorHasSelection && resourceLangId == gimmick",
+                    "command": "gimmick.evalSelection",
+                    "group": "Gimmick"
+                }
+            ]
         },
         "configuration": {
             "type": "object",
