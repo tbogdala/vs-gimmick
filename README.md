@@ -1,6 +1,11 @@
-# vs-gimmick README
+# Gimmick for Visual Studio Code
 
-This is the README for your extension "vs-gimmick". After writing up a brief description, we recommend including the following sections.
+This extension adds support for the [Gimmick][gimmick] programming language to VS Code, 
+including:
+
+* Syntax highlighting
+* REPL interaction
+
 
 ## Features
 
@@ -63,3 +68,5 @@ Added features X, Y, and Z.
 * [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**
+
+[gimmick]: https://github.com/tbogdala/gimmick

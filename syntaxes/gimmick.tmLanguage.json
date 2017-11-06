@@ -1,0 +1,50 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Gimmick",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.gimmick",
+				"match": "\\b(begin|if|lambda|define|let|let*|letrec|defmacro|true|false|quasiquote|unquote-splicing|unquote)\\b"
+			},
+			{
+				"name": "keyword.operator.gimmick",
+				"match": "\\b(\\*|\\/|\\+|\\-)\\b"
+			},
+			{
+				"name": "support.function.gimmick",
+				"match": "\\b(list|cons|cdr|eqv\\? |timed-apply|start-ruse|stop-ruse)\\b"
+			}
+			]
+		},
+		"comments": {
+			"patterns": [{
+				"name": "comment.line.gimmick",
+				"match": ";.*\\Z"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.gimmick",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.gimmick",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.gimmick"
+}

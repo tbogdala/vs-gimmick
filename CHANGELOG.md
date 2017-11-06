@@ -1,7 +1,3 @@
-# Change Log
-All notable changes to the "vs-gimmick" extension will be documented in this file.
+# [v0.0.1 initial development release]
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-- Initial release
+Initial feature set including syntax highlighting and basic REPL integration.

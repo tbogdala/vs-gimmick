@@ -8,17 +8,68 @@
         "vscode": "^1.17.0"
     },
     "categories": [
-        "Other"
+        "Languages"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:gimmick.evalSelection"
     ],
     "main": "./out/extension",
     "contributes": {
+        "menus": {
+            "editor/context": [{
+                "when": "editorTextFocus && editorHasSelection && resourceLangId == gimmick",
+                "command": "gimmick.evalSelection",
+                "group": "Gimmick"
+            }],
+            "editor/title": [{
+                "when": "editorHasSelection && resourceLangId == gimmick",
+                "command": "gimmick.evalSelection",
+                "group": "Gimmick"
+            }]
+        },
+        "configuration": {
+            "type": "object",
+            "title": "Gimmick configuration",
+            "properties": {
+                "gimmick.ruseHostname": {
+                    "type": "string",
+                    "default": "localhost",
+                    "description": "The hostname of the Gimmick REPL running a ruse server to communicate with."
+                },
+                "gimmick.rusePort": {
+                    "type": "string",
+                    "default": "4005",
+                    "description": "The port number of the Gimmick REPL running a ruse server to communicate with."
+                }
+            }
+        },
         "commands": [
             {
-                "command": "extension.sayHello",
-                "title": "Hello World"
+                "command": "gimmick.evalSelection",
+                "key": "shift+alt+e",
+                "linux": "shift+alt+e",
+                "title": "Gimmick: Eval selection",
+                "description": "Evaluates the selected code only via a running Ruse server."
+            }
+        ],
+        "languages": [
+            {
+                "id": "gimmick",
+                "aliases": [
+                    "Gimmick",
+                    "gimmick"
+                ],
+                "extensions": [
+                    ".gmk"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "gimmick",
+                "scopeName": "source.gimmick",
+                "path": "./syntaxes/gimmick.tmLanguage.json"
             }
         ]
     },
@@ -34,5 +85,8 @@
         "vscode": "^1.1.5",
         "@types/node": "^7.0.43",
         "@types/mocha": "^2.2.42"
+    },
+    "dependencies": {
+        "web-request": "^1.0.7"
     }
 }

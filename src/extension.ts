@@ -2,6 +2,10 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import * as webreq from 'web-request';
+
+// we use this to write the evaluated result
+var outputChan;
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -9,16 +13,37 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "vs-gimmick" is now active!');
-
+    // console.log('Congratulations, your extension "vs-gimmick" is now active!');
+    outputChan = vscode.window.createOutputChannel('Gimmick');
+    
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
-    let disposable = vscode.commands.registerCommand('extension.sayHello', () => {
-        // The code you place here will be executed every time your command is executed
+    let disposable = vscode.commands.registerCommand('gimmick.evalSelection', () => {
+        var editor = vscode.window.activeTextEditor;
+        if (!editor) {
+            return; // No open text editor
+        }
+        
+        var selection = editor.selection;
+        var text = editor.document.getText(selection);
 
-        // Display a message box to the user
-        vscode.window.showInformationMessage('Hello World!');
+        var wkspCfg = vscode.workspace.getConfiguration('gimmick');
+        var hostname = wkspCfg.get('ruseHostname');
+        var portnum =  wkspCfg.get('rusePort');
+        var urlbase = 'http://'+hostname+':'+portnum;
+
+        (async function() {
+            var result = await webreq.post(urlbase+'/ruse/eval', null, text);
+            console.log(result.content);
+            outputChan.show();
+            outputChan.appendLine('Result:')
+            outputChan.appendLine(result.content)
+        })();
+
+        //vscode.window
+
+        //vscode.window.showInformationMessage('Hello World!');
     });
 
     context.subscriptions.push(disposable);
@@ -26,4 +51,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 // this method is called when your extension is deactivated
 export function deactivate() {
+    outputChan.hide()
+    outputChan.dispose()
 }
